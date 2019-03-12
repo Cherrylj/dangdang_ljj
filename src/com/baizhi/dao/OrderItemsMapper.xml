@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.OrderItemsDao">
+  	<insert id="insertOrderItems"  parameterType="com.baizhi.entity.OrderItems">
+  		<selectKey resultType="INTEGER" keyProperty="id" order="BEFORE">
+  	 		select d_orderitems_seq.nextval as id from dual 
+  	 	</selectKey>
+  		insert into d_orderitems values(#{id,jdbcType=INTEGER},#{count,jdbcType=INTEGER},#{subtotal,jdbcType=INTEGER},#{order_id,jdbcType=INTEGER},#{book_id,jdbcType=INTEGER})
+  	</insert>
+</mapper>

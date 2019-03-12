@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="p1" extends="struts-default" >
+		<action name="categoryAction" class="com.baizhi.action.CategoryAction">
+			<result name="cate" >/main/category.jsp</result>
+		</action>
+		<action name="recommendAction" class="com.baizhi.action.RecommendAction">
+			<result name="rec" >/main/recommend.jsp</result>
+		</action>
+		<action name="hotAction" class="com.baizhi.action.HotAction">
+			<result name="hot" >/main/hot.jsp</result>
+		</action>
+		<action name="newAction" class="com.baizhi.action.NewAction">
+			<result name="new" >/main/new.jsp</result>
+		</action>
+		<action name="hotbAction" class="com.baizhi.action.HotBoardAction">
+			<result name="hotb" >/main/hotBoard.jsp</result>
+		</action>
+		<action name="firstAction" class="com.baizhi.action.FirstCategoryAction">
+			<result name="first" >/main/book_list.jsp</result>
+		</action>
+		<action name="titleAction" class="com.baizhi.action.TitleAction">
+			<result name="title" >/main/book_detail.jsp</result>
+		</action>
+		
+		<action name="cartAction" class="com.baizhi.action.CartAction">
+			<result name="cart" >/cart/cart_list.jsp</result>
+		</action>
+		<action name="changeAction" class="com.baizhi.action.ChangeAction">
+			<result name="change" >/cart/cart_list.jsp</result>
+		</action>
+		<action name="delAction" class="com.baizhi.action.DeleteAction">
+			<result name="del" >/cart/cart_list.jsp</result>
+		</action>
+		<action name="recoverAction" class="com.baizhi.action.RecoverAction">
+			<result name="recover" >/cart/cart_list.jsp</result>
+		</action>
+	
+		<action name="loginAction" class="com.baizhi.action.LoginAction">
+			<result name="login" type="redirect">/main/main.jsp</result>
+			<result name="fail" >/user/login_form.jsp</result>
+			<result name="add" type="chain">addAction</result>
+		</action>
+		<action name="addAction" class="com.baizhi.action.AddressAction">
+			<result name="login" type="redirect">/user/login_form.jsp</result>
+			<result name="add" >/order/address_form.jsp</result>
+		</action>
+		<action name="exitAction" class="com.baizhi.action.ExitAction">
+			<result name="exit" type="redirect">/main/main.jsp</result>
+		</action>
+		<action name="registAction" class="com.baizhi.action.RegistAction">
+			<result name="reg" type="chain">verifyAction</result>
+			<result name="reg1" >/user/register_form.jsp</result>
+		</action>
+		<action name="choiceAction" class="com.baizhi.action.ChoiceAction">
+			<result name="choice" >/order/address_form.jsp</result>
+		</action>
+		<action name="*" class="com.baizhi.action.CodeAction" method="{1}">
+		</action>
+		<action name="verifyAction" class="com.baizhi.action.VerifyAction">
+			<result name="ver" >/user/verify_form.jsp</result>
+		</action>
+		<action name="okAction" class="com.baizhi.action.RegistOkAction">
+			<result name="ok" >/user/register_ok.jsp</result>
+		</action>
+		<action name="orderAction" class="com.baizhi.action.OrderAction">
+			<result name="or" >/order/order_ok.jsp</result>
+		</action>
+	</package>
+</struts>

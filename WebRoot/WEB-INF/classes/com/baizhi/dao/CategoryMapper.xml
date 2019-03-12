@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CategoryDao">
+<resultMap id="t" type="com.baizhi.entity.Category">
+<id property="id" column="firstid" />
+		<result property="classify" column="firstname" />
+		
+		<result property="parent_id" column="parent_id" />
+		<result property="count" column="dcount" />
+		<collection property="list" ofType="com.baizhi.entity.Category">
+			<id property="id" column="secondid" />
+			<result property="classify" column="secondname" />
+			<result property="parent_id" column="parent_id" />
+			<result property="count" column="ddcount" />
+		</collection>
+
+</resultMap>
+  <select id="getAll" resultMap="t">
+  	select d.id firstid,d.count dcount,d.classify firstname,d.parent_id,dd.count ddcount,
+  	dd.id secondid,dd.classify secondname,
+		dd.parent_id from d_category d join d_category dd on dd.parent_id=d.id
+  </select>
+  
+  <select id="getAll2" parameterType="int" resultMap="t">
+  	select d.id firstid,d.classify firstname,d.parent_id,d.count dcount,dd.count ddcount
+		,dd.id secondid,dd.classify secondname,
+		dd.parent_id from d_category d join d_category dd on dd.parent_id=d.id where d.id=#{id}
+  </select>
+</mapper>

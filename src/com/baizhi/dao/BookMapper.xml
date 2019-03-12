@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.BookDao">
+  	<select id="getAll"  resultType="com.baizhi.entity.Book">
+  		select * from(select * from d_product order by recommends )where rownum between 1 and 2
+  	</select>
+  	<select id="getAll2"  resultType="com.baizhi.entity.Book">
+  		select * from(select * from d_product order by salesVolume desc )where rownum between 1 and 8
+  	</select>
+  	<select id="getAll3"  resultType="com.baizhi.entity.Book">
+  		select * from(select * from d_product order by dateIssued desc )where rownum between 1 and 8
+  	</select>
+  	<select id="getAll4"  resultType="com.baizhi.entity.Book">
+  		select * from(select * from(select * from d_product  order by dateIssued desc) order by salesVolume desc) 
+		where rownum between 1 and 8
+  	</select>
+  	<select id="first" parameterType="int" resultType="com.baizhi.entity.Book">
+  		select * from d_product f left join d_category d 
+		on f.category_id=d.id
+		where d.parent_id=#{id}
+  	</select>
+  	<select id="second" parameterType="int" resultType="com.baizhi.entity.Book">
+  		select * from d_product where category_id=#{id}
+  	</select>
+  	<select id="title" parameterType="int" resultType="com.baizhi.entity.Book">
+  		select * from d_product where id=#{id}
+  	</select>
+  	<select id="getAll5" resultType="com.baizhi.entity.Book">
+  		  select * from    (select p.*,rownum rm from d_product p 
+  		  					left join d_category c 
+      						 on p.category_id=c.id where c.parent_id=#{id}) 
+      				where rm between #{begin} and #{end}
+  	</select>
+  	<select id="getAll6" resultType="com.baizhi.entity.Book">
+  		  select * from    (select p.*,rownum rm from d_product p where p.category_id=#{id}) 
+              where rm between #{begin} and #{end}
+  	</select>
+</mapper>
